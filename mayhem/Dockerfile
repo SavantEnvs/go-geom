@@ -1,13 +1,11 @@
-FROM fuzzers/go-fuzz:1.2.0 as builder
+FROM golang:1.21 AS builder
 
-ARG project='go-geom'
-ARG fuzzTargetPath='encoding/wkb'
-ARG fuzzTarget='go-geom-encoding-wkb-fuzz'
+ENV GOTOOLCHAIN=auto
 
-ADD . ${project}
-WORKDIR ${project}
-RUN GO_ENABLED=0 go-fuzz-build -libfuzzer -o /${fuzzTarget}.a ./${fuzzTargetPath}
-RUN clang -fsanitize=fuzzer /${fuzzTarget}.a -o /${fuzzTarget}.libfuzzer
+ADD . /go-geom
+WORKDIR /go-geom
 
-FROM ubuntu:20.04
-COPY --from=builder /go-geom-encoding-wkb-fuzz.libfuzzer /
+RUN go test -c -fuzz=FuzzWkb -o /go-geom-encoding-wkb-fuzz ./encoding/wkb
+
+FROM ubuntu:22.04
+COPY --from=builder /go-geom-encoding-wkb-fuzz /
