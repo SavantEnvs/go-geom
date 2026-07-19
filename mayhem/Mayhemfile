@@ -1,0 +1,8 @@
+project: savantenvs/go-geom
+target: go-geom-encoding-wkb-fuzz
+cmds:
+  - cmd: /mayhem/go-geom-encoding-wkb-fuzz
+    libfuzzer: true
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/go-geom-encoding-wkb-fuzz/testsuite
