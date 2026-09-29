@@ -1,0 +1,8 @@
+project: savantenvs/go-geom
+target: go-geom-encoding-wkb-fuzz-buggy-mhh-run-1
+cmds:
+  - cmd: /mayhem/go-geom-encoding-wkb-fuzz -rss_limit_mb=2048 -runs=100
+    libfuzzer: true
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+# origin: https://app.mayhem.security/mayhemheroes/go-geom/go-geom-encoding-wkb-fuzz/1
