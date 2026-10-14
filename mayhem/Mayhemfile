@@ -1,0 +1,9 @@
+# seed-from: https://app.mayhem.security/savantenvs/go-geom/go-geom-encoding-wkb-fuzz
+project: savantenvs/go-geom
+target: go-geom-encoding-wkb-fuzz-mined-5e63a56
+cmds:
+  - cmd: /mayhem/go-geom-encoding-wkb-fuzz-mined-5e63a56
+    libfuzzer: true
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/go-geom-encoding-wkb-fuzz-mined-5e63a56/testsuite
